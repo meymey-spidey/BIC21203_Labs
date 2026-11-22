@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q2 — Smart Number Validator</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 40px; display: flex; justify-content: center; }
+    .container { background: white; padding: 30px 40px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 500px; width: 100%; }
+    h1 { color: #2c3e50; font-size: 24px; margin-bottom: 20px; }
+    label { font-weight: bold; display: block; margin-bottom: 8px; }
+    input { width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px; box-sizing: border-box; }
+    button { background-color: #2ecc71; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: 0.3s; width: 100%; }
+    button:hover { background-color: #27ae60; }
+    #result { margin-top: 20px; padding: 15px; font-weight: bold; border-radius: 5px; text-align: center; }
+    .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Question 2: Smart Number Validator</h1>
+    <label for="userInput">Enter a number:</label>
+    <input type="text" id="userInput" placeholder="e.g. 5, 10, abc">
+    <button id="checkBtn" type="button">Check Number</button>
+    <p id="result" role="status" aria-live="polite"></p>
+  </div>
+  <script src="script.js" defer></script>
+</body>
+</html>

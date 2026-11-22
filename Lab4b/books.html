@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q2 — Books Display</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 40px; display: flex; justify-content: center; }
+    .container { background: white; padding: 30px 40px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 600px; width: 100%; }
+    h1 { color: #2c3e50; font-size: 24px; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;}
+    h2 { font-size: 18px; color: #555; margin-top: 25px;}
+    p { font-size: 16px; line-height: 1.6; margin: 8px 0; }
+    .book-group { background: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #e67e22; margin-bottom: 10px;}
+    #output { color: #555; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Question 2: Books Data</h1>
+    <div id="output" role="status" aria-live="polite">Loading data...</div>
+  </div>
+
+  <script>
+    const output = document.getElementById("output");
+
+    async function loadBooks() {
+      try {
+        const response = await fetch("books.json");
+        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+        const data = await response.json();
+
+        output.replaceChildren(); // Clear loading text
+
+        const books = data.books;
+        if (!Array.isArray(books) || books.length < 2) {
+          throw new Error("Invalid data format.");
+        }
+
+        // (a) Title of first book
+        const titleEl = document.createElement("p");
+        titleEl.textContent = `Title of first book: ${books[0].title}`;
+        output.appendChild(titleEl);
+
+        // (b) Author of second book
+        const authorEl = document.createElement("p");
+        authorEl.textContent = `Author of second book: ${books[1].author}`;
+        output.appendChild(authorEl);
+
+        // (c) Genres
+        const genresHeader = document.createElement("h2");
+        genresHeader.textContent = "Genres by book:";
+        output.appendChild(genresHeader);
+
+        books.forEach(book => {
+          const item = document.createElement("div");
+          item.className = "book-group";
+          item.textContent = `${book.title} — ${book.genres.join(", ")}`;
+          output.appendChild(item);
+        });
+      } catch (err) {
+        output.textContent = `Sorry, could not load book data. (${err.message})`;
+        output.style.color = "red";
+      }
+    }
+
+    loadBooks();
+  </script>
+</body>
+</html>
